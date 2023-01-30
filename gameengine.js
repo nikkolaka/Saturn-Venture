@@ -9,6 +9,10 @@ class GameEngine {
         // Everything that will be updated and drawn each frame
         this.entities = [];
 
+        this.player = new Saturn(this);
+
+        this.largestGrav;
+
         // Information on the input
         this.click = null;
         this.mouse = null;
@@ -85,18 +89,35 @@ class GameEngine {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
         // Draw latest things first
+        
+
+
         for (let i = this.entities.length - 1; i >= 0; i--) {
             this.entities[i].draw(this.ctx, this);
+            
         }
+        this.player.draw(this.ctx);
     };
 
     update() {
         let entitiesCount = this.entities.length;
 
+        if(this.keys.r){
+            this.player = new Saturn(this);
+            this.largestGrav.mass = this.largestGrav.ogMass
+        }
+        
+        
         for (let i = 0; i < entitiesCount; i++) {
             let entity = this.entities[i];
 
+            
+
             if (!entity.removeFromWorld) {
+                this.player.collision(entity);
+                this.player.gravity(entity);
+                
+
                 entity.update();
             }
         }
@@ -106,6 +127,9 @@ class GameEngine {
                 this.entities.splice(i, 1);
             }
         }
+        this.player.update();
+
+
     };
 
     loop() {
