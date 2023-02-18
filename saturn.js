@@ -3,11 +3,11 @@ class Saturn{
 
         this.friction = 0;
 
-        this.vel = new Vector(-1,-0.2);
+        this.vel = new Vector(2,0);
         this.acc = new Vector(0,0);
         this.grav = new Vector(0,0);
 
-        this.acceleration = 0.1;
+        this.acceleration = 0.05;
         
 
         this.game = game;
@@ -26,23 +26,16 @@ class Saturn{
     };
 
     update() {
-        if(this.game.keys.a) this.acc.x = -this.acceleration;
+        /* if(this.game.keys.a) this.acc.x = -this.acceleration; */
         if(this.game.keys.w) this.acc.y = -this.acceleration;
-        if(this.game.keys.d) this.acc.x = this.acceleration;
+        /* if(this.game.keys.d) this.acc.x = this.acceleration; */
         if(this.game.keys.s) this.acc.y = this.acceleration;                         
 
         if(!this.game.keys.s && !this.game.keys.w) this.acc.y = 0;
-        if(!this.game.keys.a && !this.game.keys.d) this.acc.x = 0;
+        /* if(!this.game.keys.a && !this.game.keys.d) this.acc.x = 0; */
 
-        if(this.game.keys.Shift){
-            this.game.largestGrav.mass += 5;
-            
-        } else if(this.game.largestGrav.mass > this.game.largestGrav.ogMass){
-            this.game.largestGrav.mass -= 1;
-        } else{
-            this.game.largestGrav.mass = this.game.largestGrav.ogMass;
-        }
-        console.log(this.game.largestGrav.mass)
+        console.log(this.game.keys)
+        
 
         
 
@@ -68,12 +61,12 @@ class Saturn{
     };
 
     draw(ctx){
-        this.vel.drawVector(this.x, this.y, 10, "green", ctx)
-        this.acc.drawVector(this.x, this.y, 100, "blue", ctx)
-        this.grav.drawVector(this.x, this.y, 50, "black", ctx)
+        this.vel.drawVector(this.x- this.game.camera.x, this.y, 10, "green", ctx)
+        this.acc.drawVector(this.x- this.game.camera.x, this.y, 100, "blue", ctx)
+        this.grav.drawVector(this.x- this.game.camera.x, this.y, 50, "black", ctx)
         ctx.strokeStyle = "#FF0000";
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);    
+        ctx.arc(this.x - this.game.camera.x, this.y, this.radius, 0, 2 * Math.PI);    
         ctx.fillStyle = 'red';
         ctx.fill();
         ctx.stroke(); 
@@ -88,9 +81,10 @@ class Saturn{
         dx /= distance;
         dy /= distance;
 
+        let newGrav = (new Vector(dx, dy)).mult((planet.mass/(distance**2)));
 
-        this.grav = this.grav.add(new Vector(dx, dy));
-        this.grav = this.grav.mult((planet.mass/(distance**2)))
+        this.grav = this.grav.add(newGrav);
+        
         
         planet.playerGrav = (planet.mass/(distance**2));
 

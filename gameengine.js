@@ -11,7 +11,12 @@ class GameEngine {
 
         this.player = new Saturn(this);
 
+        this.camera;
+
         this.largestGrav;
+
+        this.score = 0;
+
 
         // Information on the input
         this.click = null;
@@ -23,6 +28,8 @@ class GameEngine {
         this.options = options || {
             debugging: false,
         };
+
+        this.restart = false;
     };
 
     init(ctx) {
@@ -89,6 +96,8 @@ class GameEngine {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
         // Draw latest things first
+        this.ctx.fillStyle = "#9e977e";
+        this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
         
 
 
@@ -97,15 +106,21 @@ class GameEngine {
             
         }
         this.player.draw(this.ctx);
+
+        
+
+        this.ctx.font = "48px sans-serif";
+        this.ctx.fillText(this.score, 20, 50);
     };
 
     update() {
         let entitiesCount = this.entities.length;
 
         if(this.keys.r){
-            this.player = new Saturn(this);
-            this.largestGrav.mass = this.largestGrav.ogMass
+            this.restart = true;
         }
+
+        console.log(this.restart)
         
         
         for (let i = 0; i < entitiesCount; i++) {
@@ -122,12 +137,16 @@ class GameEngine {
             }
         }
 
+        this.camera.update();
+
         for (let i = this.entities.length - 1; i >= 0; --i) {
             if (this.entities[i].removeFromWorld) {
                 this.entities.splice(i, 1);
             }
         }
         this.player.update();
+
+        if(this.player.x > this.score) this.score += Math.floor(this.player.x - this.score);
 
 
     };
