@@ -34,7 +34,7 @@ class Saturn{
         if(!this.game.keys.s && !this.game.keys.w) this.acc.y = 0;
         /* if(!this.game.keys.a && !this.game.keys.d) this.acc.x = 0; */
 
-        console.log(this.game.keys)
+        
         
 
         

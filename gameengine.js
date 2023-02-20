@@ -17,6 +17,8 @@ class GameEngine {
 
         this.score = 0;
 
+        this.background = new Background(this);
+
 
         // Information on the input
         this.click = null;
@@ -95,9 +97,10 @@ class GameEngine {
         // Clear the whole canvas with transparent color (rgba(0, 0, 0, 0))
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
+        this.ctx.fillStyle = "black";
+        this.ctx.fillRect(0, 0, params.screenWidth, params.screenHeight)
         // Draw latest things first
-        this.ctx.fillStyle = "#9e977e";
-        this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+        this.background.draw(this.ctx);
         
 
 
@@ -114,13 +117,15 @@ class GameEngine {
     };
 
     update() {
+
+
         let entitiesCount = this.entities.length;
 
         if(this.keys.r){
             this.restart = true;
         }
 
-        console.log(this.restart)
+        
         
         
         for (let i = 0; i < entitiesCount; i++) {
@@ -137,7 +142,7 @@ class GameEngine {
             }
         }
 
-        this.camera.update();
+        
 
         for (let i = this.entities.length - 1; i >= 0; --i) {
             if (this.entities[i].removeFromWorld) {
@@ -146,7 +151,11 @@ class GameEngine {
         }
         this.player.update();
 
+        this.background.update();
+
         if(this.player.x > this.score) this.score += Math.floor(this.player.x - this.score);
+
+        this.camera.update();
 
 
     };

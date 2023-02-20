@@ -17,6 +17,8 @@ class SceneManager{
         this.game.player = new Saturn(this.game);
         this.game.score = -800;
 
+        this.game.background = new Background(this.game);
+
         
 
         for(let i = 0; i < 30; i++){
