@@ -18,6 +18,8 @@ class Planet{
         this.x = params.screenWidth/2;
         this.y = params.screenHeight/2;
 
+        this.seed = randomInt(500000)+100000;
+
 
         this.mass = this.radius*20;
         this.ogMass = this.mass;

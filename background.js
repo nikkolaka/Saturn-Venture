@@ -8,7 +8,7 @@ class Background{
         this.x2 = Math.floor(this.game.player.x + params.screenWidth/2);
 
         this.generatedX = this.x2;
-        this.density = 2;
+        this.density = 4;
 
 
         this.buildBackground(0, this.x2);
@@ -35,7 +35,7 @@ class Background{
         for(let i = leftx; i < this.x2; i++){
             for(let j = 0; j < this.starmap[i].length; j++){
                 let star = this.starmap[i][j];
-                this.drawCircle(ctx, star.x , star.y, star.radius, 'white', 'white', 2);
+                this.drawCircle(ctx, star.x , star.y, star.radius, star.hsl);
             
             }
         }
@@ -50,7 +50,7 @@ class Background{
             
             for(let j = 0; j < randomInt(this.density); j++){
 
-                starslice.push({x: i, y: randomInt(params.screenHeight), radius: Math.random() * (2.5 - 0.1) + 0.1, hsl: {h:randomInt(361), s:100, l:randomInt(101)}});
+                starslice.push({x: i, y: randomInt(params.screenHeight), radius: Math.random() * (2.5 - 0.1) + 0.1, hsl: {h:randomInt(361), s:20, l:randomInt(101)}});
             }
             this.starmap.push(starslice);
             
@@ -65,18 +65,12 @@ class Background{
     
 
     
-    drawCircle(ctx, x, y, radius, fill, stroke, strokeWidth) {
+    drawCircle(ctx, x, y, radius, hsl) {
         ctx.beginPath()
         ctx.arc(x - this.game.camera.x, y, radius, 0, 2 * Math.PI, false)
-        if (fill) {
-          ctx.fillStyle = fill
-          ctx.fill()
-        }
-        if (stroke) {
-          ctx.lineWidth = strokeWidth
-          ctx.strokeStyle = stroke
-          ctx.stroke()
-        }
+        ctx.fillStyle = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`
+        ctx.fill()
+        
     }
 
 

@@ -32,6 +32,7 @@ class GameEngine {
         };
 
         this.restart = false;
+        this.canrestart = true;
     };
 
     init(ctx) {
@@ -122,7 +123,15 @@ class GameEngine {
         let entitiesCount = this.entities.length;
 
         if(this.keys.r){
-            this.restart = true;
+
+            
+            if(this.canrestart){
+                this.restart = true;
+                this.canrestart = false;
+                setTimeout(() => {this.canrestart = true;}, 1000)
+            }
+            
+            
         }
 
         
@@ -153,7 +162,7 @@ class GameEngine {
 
         this.background.update();
 
-        if(this.player.x > this.score) this.score += Math.floor(this.player.x - this.score);
+        if(this.player.x > this.score) this.score += Math.floor((this.player.x/100) - this.score);
 
         this.camera.update();
 
