@@ -35,7 +35,7 @@ class Background{
         for(let i = leftx; i < this.x2; i++){
             for(let j = 0; j < this.starmap[i].length; j++){
                 let star = this.starmap[i][j];
-                this.drawCircle(ctx, star.x - this.game.camera.x, star.y, star.radius, 'white', 'white', 2);
+                this.drawCircle(ctx, star.x , star.y, star.radius, 'white', 'white', 2);
             
             }
         }
