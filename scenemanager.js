@@ -44,9 +44,6 @@ class SceneManager{
         let midpoint = params.screenWidth/2 - this.game.player.radius;
         this.x = this.game.player.x - midpoint;
 
-
-
-
     }
 
 

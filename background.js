@@ -8,7 +8,7 @@ class Background{
         this.x2 = Math.floor(this.game.player.x + params.screenWidth/2);
 
         this.generatedX = this.x2;
-        this.density = 4;
+        this.density = 15;
 
 
         this.buildBackground(0, this.x2);
@@ -50,7 +50,7 @@ class Background{
             
             for(let j = 0; j < randomInt(this.density); j++){
 
-                starslice.push({x: i, y: randomInt(params.screenHeight), radius: Math.random() * (2.5 - 0.1) + 0.1, hsl: {h:randomInt(361), s:20, l:randomInt(101)}});
+                starslice.push({x: i, y: randomInt(params.screenHeight), radius: Math.random() * (2.5 - 0.1) + 0.1, hsl: {h:randomInt(361), s:20, l:randomInt(50)+50}});
             }
             this.starmap.push(starslice);
             

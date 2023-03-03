@@ -113,8 +113,16 @@ class GameEngine {
 
         
 
-        this.ctx.font = "48px sans-serif";
+        this.ctx.font = " 48px monospace";
+        this.ctx.fillStyle = "#09ff00";
         this.ctx.fillText(this.score, 20, 50);
+
+        if(this.player.tooFar){
+            
+            this.ctx.fillText("You have been flung into the void", 50, params.screenHeight/2);
+            this.ctx.fillText("Eta: ∞", 410, params.screenHeight/2 + 96);
+        }
+        
     };
 
     update() {
@@ -158,7 +166,9 @@ class GameEngine {
                 this.entities.splice(i, 1);
             }
         }
-        this.player.update();
+
+        if(!this.player.dead && !this.player.tooFar)this.player.update();
+        
 
         this.background.update();
 

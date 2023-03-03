@@ -15,6 +15,8 @@ class Saturn{
         this.diameter = this.radius*2;
         this.x = 800;
         this.y = 200;
+        this.dead = false;
+        this.tooFar = false;
 
 
 
@@ -51,7 +53,7 @@ class Saturn{
 
         this.grav = new Vector(0,0);
         
-
+        if(this.y > params.screenHeight + 500 || this.y < -500) this.tooFar = true;
 
 
         
@@ -109,8 +111,7 @@ class Saturn{
         var radiusSum = this.radius+planet.radius
     
         if((dx * dx + dy * dy) < (radiusSum)*(radiusSum)){
-            this.game.clockTick = 0;
-            this.vel = new Vector(0,0);
+            this.dead = true;
             
             /* var distance = Math.sqrt(dx * dx + dy * dy);
             var step = radiusSum - distance;
