@@ -113,7 +113,7 @@ class GameEngine {
 
         
 
-        this.ctx.font = " 48px monospace";
+        this.ctx.font = " 48px pixelmix";
         this.ctx.fillStyle = "#09ff00";
         this.ctx.fillText(this.score, 20, 50);
 

@@ -3,7 +3,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Game Project Title Goes Here</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Saturn Venture</title>
   
     <script type="text/javascript" src="./assetmanager.js"></script>
     <script type="text/javascript" src="./timer.js"></script>
@@ -20,8 +21,15 @@
     
     
 </head>
-<body>
-    <canvas id="gameWorld" width="1024" height="768" style="background: white; border: 1px solid black" tabindex="0" autofocus></canvas>
-    <div>Press W and S to control thrust, R to reset, Camera synchronization with background is a bit buggy at the moment <br> Don't hit the planet or you'll die</div>
+<body> 
+    <header><img id="titlebanner" src="html-images/saturn-3-banner.png" alt="Saturn Venture"></header>
+    <div class="gameContainer">
+        <canvas id="gameWorld" width="1024" height="768" tabindex="0" autofocus></canvas>
+    </div>
+    <div class="container">
+        <div class="text-column-1">Press W - Thrust UP<br>Press S - Thrust DOWN<br>Press R - reset</div>
+        <div class="text-column-2">Camera synchronization with background is a bit buggy at the moment <br> Don't hit the planet or you'll die</div>
+    </div>
+        
 </body>
 </html>

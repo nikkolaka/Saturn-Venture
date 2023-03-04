@@ -1,0 +1,62 @@
+body {
+  text-align: center;
+  background-color: black;
+  color: white;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  font-family: 'pixelmix';
+}
+canvas {
+  border: 10px;
+  border-color: aqua;
+}
+.gameContainer {
+  border: 5px;
+  border-style:solid;
+  border-color: #d30000;
+  width:1024px; 
+  height: 768px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#titlebanner {
+  height: auto;
+  width: 720px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-left: 50px;
+  padding-right: 50px;
+
+}
+.text-column-1 {
+  margin-top:20px;
+  margin-left:120px;
+  margin-right:20px;
+  max-width: 400px;
+  color:white;
+  text-align: left;
+  line-height: 20px;
+  width: 100%;
+}
+.text-column-2 {
+  margin-top:20px;
+  margin-left:20px;
+  margin-right:120px;
+  max-width: 400px;
+  color:white;
+  text-align: left;
+  line-height: 20px;
+  width: 100%;
+}
+/* fonty wonty */
+@font-face { font-family: 'pixelmix'; src: url('/fonts/pixelmix.ttf'); } 
+@font-face { font-family: 'pixelmix'; font-weight: bold; src: url('/fonts/pixelmix_bold.ttf');}
