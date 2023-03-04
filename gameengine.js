@@ -11,6 +11,8 @@ class GameEngine {
 
         this.player = new Saturn(this);
 
+        this.sun = new Sun(this);
+
         this.camera;
 
         this.largestGrav;
@@ -110,6 +112,7 @@ class GameEngine {
             
         }
         this.player.draw(this.ctx);
+        this.sun.draw(this.ctx);
 
         
 
@@ -171,6 +174,7 @@ class GameEngine {
         
 
         this.background.update();
+        this.sun.update();
 
         if(this.player.x > this.score) this.score += Math.floor((this.player.x/100) - this.score);
 

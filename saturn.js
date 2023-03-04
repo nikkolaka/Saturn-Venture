@@ -63,9 +63,9 @@ class Saturn{
     };
 
     draw(ctx){
-        this.vel.drawVector(this.x- this.game.camera.x, this.y, 10, "green", ctx)
+        /* this.vel.drawVector(this.x- this.game.camera.x, this.y, 10, "green", ctx)
         this.acc.drawVector(this.x- this.game.camera.x, this.y, 100, "blue", ctx)
-        this.grav.drawVector(this.x- this.game.camera.x, this.y, 50, "black", ctx)
+        this.grav.drawVector(this.x- this.game.camera.x, this.y, 50, "black", ctx) */
         ctx.strokeStyle = "#FF0000";
         ctx.beginPath();
         ctx.arc(this.x - this.game.camera.x, this.y, this.radius, 0, 2 * Math.PI);    
