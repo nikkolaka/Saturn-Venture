@@ -18,10 +18,11 @@ class SceneManager{
         this.game.score = -800;
 
         this.game.background = new Background(this.game);
+        this.game.sun = new Sun(this.game);
 
         
 
-        for(let i = 0; i < 30; i++){
+        for(let i = 0; i < 1000; i++){
             var planet = new Planet(this.game, i, randomInt(30)+15);
 
             planet.y = randomInt(200)+(params.screenHeight/2 - 100);
