@@ -58,5 +58,5 @@ canvas {
   width: 100%;
 }
 /* fonty wonty */
-@font-face { font-family: 'pixelmix'; src: url('/fonts/pixelmix.ttf'); } 
-@font-face { font-family: 'pixelmix'; font-weight: bold; src: url('/fonts/pixelmix_bold.ttf');}
+@font-face { font-family: 'pixelmix'; src: url('./fonts/pixelmix.ttf'); } 
+@font-face { font-family: 'pixelmix'; font-weight: bold; src: url('./fonts/pixelmix_bold.ttf');}
