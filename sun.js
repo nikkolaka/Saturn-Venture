@@ -1,7 +1,8 @@
 class Sun{
     constructor(game){
         this.game = game;
-        this.x = -900;
+        this.x = -300;
+        this.deathX = 615;
         this.red = 255;
         this.green = 255;
         this.blue = 0;
@@ -9,15 +10,15 @@ class Sun{
         this.startArc = 1.5;
         this.endArc = 0.5;
         this.radius = 1000;
-        this.speed = 0.075;
+        this.speed = 1;
         
     }
 
     update(){
         if(this.green > 0){
-            this.green -= this.speed;
+            this.green -= 0.1;
         } else{
-            this.blue += this.speed;
+            this.blue += 0.1;
         }
 
         
@@ -25,13 +26,22 @@ class Sun{
 
         
 
-        this.startArc += this.speed;
-        this.endArc -= this.speed;
-        if(this.radius < 10000) this.radius += this.speed;
+        
+        
+        
 
+        if(Math.abs(this.deathX - this.game.player.x)  < 600){
+            if(this.speed > 1){
+                this.speed -= 0.1;
+            } else{
+                this.speed = 1
+            }
+        } else if(this.deathX < this.game.player.x){
+            this.speed += 0.01
+        } 
 
-        if(this.game.player.x - (this.radius + this.x) < 5000)  this.speed = 0.075;
-        else this.speed = 0.005
+        this.x += this.speed;
+        this.deathX += this.speed;
 
 
 
@@ -45,6 +55,10 @@ class Sun{
         ctx.fill();
         ctx.lineWidth = 5;
         ctx.strokeStyle = this.color;
+/*         ctx.lineWidth = 10;
+        ctx.beginPath();
+        ctx.moveTo(this.deathX - this.game.camera.x, 0);
+        ctx.lineTo(this.deathX - this.game.camera.x, params.screenHeight); */
         ctx.stroke();
     }
 }

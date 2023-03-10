@@ -21,8 +21,21 @@ class SceneManager{
         this.game.sun = new Sun(this.game);
 
         
+        for(let i = 0; i < 10; i++){
+            var planet = new Planet(this.game, i, randomInt(30)+15);
 
-        for(let i = 0; i < 1000; i++){
+            if(i % 2 == 0) planet.y = randomInt(200)+(params.screenHeight - 300);
+            else planet.y = (300) - randomInt(200);
+
+            planet.x = 400 + i*500;
+
+            
+            
+
+            this.game.addEntity(planet)
+            
+        }
+        for(let i = 20; i < 1000; i++){
             var planet = new Planet(this.game, i, randomInt(30)+15);
 
             planet.y = randomInt(200)+(params.screenHeight/2 - 100);

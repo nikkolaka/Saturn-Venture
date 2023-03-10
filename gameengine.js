@@ -115,20 +115,43 @@ class GameEngine {
         this.sun.draw(this.ctx);
 
         
-
+        this.ctx.stroke();
         this.ctx.font = " 48px pixelmix";
         this.ctx.fillStyle = "#09ff00";
         this.ctx.fillText(this.score, 20, 50);
-
+        this.ctx.font = " 30px pixelmix";
+        if(this.player.dead || this.player.tooFar || this.player.incinerated){
+            this.ctx.fillStyle = "black";
+            this.ctx.fillRect((params.screenWidth/1.5)-(params.screenWidth/2)-25,320, params.screenWidth/1.5 +50, params.screenHeight/4 )
+            this.ctx.fillStyle = "white";
+            this.ctx.fillRect((params.screenWidth/1.5)-(params.screenWidth/2)+5 - 25,320 +5, params.screenWidth/1.5 - 10 +50, params.screenHeight/4-10)
+            this.ctx.fillStyle = "black";
+            this.ctx.fillRect((params.screenWidth/1.5)-(params.screenWidth/2)+7.5 -25,320 +7.5, params.screenWidth/1.5 - 15 +50, params.screenHeight/4-15)
+            
+            
+        }
+        this.ctx.font = " 30px pixelmix";
+        this.ctx.fillStyle = "#09ff00";
         if(this.player.tooFar){
             
-            this.ctx.fillText("You have been flung into the void", 50, params.screenHeight/2);
-            this.ctx.fillText("Eta: ∞", 410, params.screenHeight/2 + 96);
+            this.ctx.fillText("You have been flung into the void", 165, params.screenHeight/2);
+            this.ctx.fillText("Eta: ∞", 450, params.screenHeight/2 + 80);
+            
+        } else if(this.player.incinerated){
+            this.ctx.fillText("Things are getting a bit toasty", 190, params.screenHeight/2);
+            this.ctx.fillText("Eta: 10000°F", 410, params.screenHeight/2 + 80);
+            
+        } else if(this.player.dead){
+            console.log("crashed")
+            this.ctx.fillText("I think this is the wrong planet", 190, params.screenHeight/2);
+            this.ctx.fillText("Eta: I can't find my arm", 290, params.screenHeight/2 + 80);
+            
         }
         
     };
 
     update() {
+        //console.log("Sun: " + Math.ceil(this.sun.deathX)+ " Speed: "+Math.ceil(this.sun.speed) + " Saturn: "+Math.ceil(this.player.x))
 
 
         let entitiesCount = this.entities.length;
@@ -170,11 +193,14 @@ class GameEngine {
             }
         }
 
-        if(!this.player.dead && !this.player.tooFar)this.player.update();
+        if(!this.player.dead && !this.player.tooFar && !this.player.incinerated){
+            this.player.update();
+            this.sun.update();
+        }
         
 
         this.background.update();
-        this.sun.update();
+        
 
         if(this.player.x > this.score) this.score += Math.floor((this.player.x/100) - this.score);
 

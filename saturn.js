@@ -14,9 +14,10 @@ class Saturn{
         this.radius = 5;
         this.diameter = this.radius*2;
         this.x = 800;
-        this.y = 200;
+        this.y = 400;
         this.dead = false;
         this.tooFar = false;
+        this.incinerated = false;
 
 
 
@@ -54,6 +55,7 @@ class Saturn{
         this.grav = new Vector(0,0);
         
         if(this.y > params.screenHeight + 500 || this.y < -500) this.tooFar = true;
+        if(this.x < this.game.sun.deathX) this.incinerated = true;
 
 
         

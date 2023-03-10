@@ -16,6 +16,7 @@ class Planet{
         this.mass = this.radius*20;
         this.ogMass = this.mass;
         this.playerGrav = 0;
+        this.hsl = {h:randomInt(361), s:100, l:60}
 
 
 
@@ -25,13 +26,14 @@ class Planet{
         
         
     };
+    
 
     draw(ctx){
 
-        ctx.strokeStyle = 'blue';
+        ctx.strokeStyle = `hsl(${this.hsl.h}, ${this.hsl.s}%, ${this.hsl.l}%)`;
         ctx.beginPath();
         ctx.arc(this.x - this.game.camera.x, this.y, this.radius, 0, 2 * Math.PI);    
-        ctx.fillStyle = 'blue';
+        ctx.fillStyle = `hsl(${this.hsl.h}, ${this.hsl.s}%, ${this.hsl.l}%)`;
         ctx.fill();
         ctx.stroke(); 
     };
